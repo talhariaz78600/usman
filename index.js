@@ -17,8 +17,11 @@ app.use('/api/education',require('./routes/education'));
 app.use('/api/ethics',require('./routes/ethics'));
 app.use('/api/trade',require('./routes/trade'));
 app.use('/api/food',require('./routes/food'));
+app.use('/api/solutions',require('./routes/solutions'));
+app.use('/api/department',require('./routes/department'));
+app.use('/api/love',require('./routes/love'));
 const server=app.listen(port, () => {
     console.log(`haltak app listening on port ${port}`)
     
   })
-  server.timeout = 60000;
+server.timeout = 60000;

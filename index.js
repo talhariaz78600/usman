@@ -7,13 +7,12 @@ const express = require('express')
 const app = express()
 const port =process.env.port||5500;
 app.use(bodyParser.json({ limit: '100mb' }));
-
+app.get('/',(req,res)=>{
+  res.send('<h1>Website is working</h1>')
+})
 app.use(express.json())
 app.use(cors());
 //  available routes
-app.get('/' ,(res,req)=>{
-  res.send("this app is working")
-})
 app.use('/api/admin',require('./routes/admin'));
 app.use('/api/home',require('./routes/home'));
 app.use('/api/education',require('./routes/education'));

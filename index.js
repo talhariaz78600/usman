@@ -11,7 +11,7 @@ app.use(bodyParser.json({ limit: '100mb' }));
 app.use(express.json())
 app.use(cors());
 //  available routes
-app.get('/' ,(req,res)=>{
+app.get('/' ,(res,req)=>{
   res.send("this app is working")
 })
 app.use('/api/admin',require('./routes/admin'));

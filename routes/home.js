@@ -1,15 +1,77 @@
 const express = require('express');
+const {ObjectId} = require('mongodb');
 const router = express.Router();
 const Home = require('../models/Home')
-
+const Education= require('../models/Education')
+const Department=require('../models/Department')
+const Ethics=require('../models/Ethics')
+const Love=require('../models/Love')
+const Food=require('../models/Food')
+const Solutions=require('../models/Solutions')
+const Trade=require('../models/Trade')
 ///////////////////////create frist page document//////////////////
 router.post('/homedata', async (req,res)=>{
     const title=req.body.title;
     const contentId=req.body.contentId;
     const page=req.body.page;
+    const id=contentId;
     const success=false;
+    let objectId;
+  
+    objectId = ObjectId.isValid(id) ? new ObjectId(id) : null;;
     try {
-        
+        if(title==='education'){
+
+            const finddata = await Education.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            }
+           }
+           else if(title==='ethics'){
+            const finddata = await Ethics.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            } 
+           }
+           else if(title==='trade'){
+            const finddata = await Trade.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            } 
+           }
+           else if(title==='food'){
+            const finddata = await Food.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            } 
+           }
+           else if(title==='solutions'){
+            const finddata = await Solutions.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            } 
+           }
+           else if(title==='department'){
+            const finddata = await Department.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            } 
+           }
+           else if(title==='love'){
+            const finddata = await Love.findOne({ _id: objectId });
+            if(!finddata){
+                return res.json({success});
+            }
+           }
+           else
+           {
+             
+           }
+         
+
+
+
+
         const homedata = await Home.create({
             title:title,
             contentId:contentId,
@@ -18,7 +80,7 @@ router.post('/homedata', async (req,res)=>{
           const success=true;
           res.json({homedata,success})
     } catch (error) {
-        res.json({error,success});
+        res.status(400).json({success, error: 'Invalid ID or document not found' });;
     }
 
 })

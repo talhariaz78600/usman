@@ -22,43 +22,43 @@ router.post('/homedata', async (req,res)=>{
     try {
         if(title==='education'){
 
-            const finddata = await Education.findOne({ _id: objectId });
+            const finddata = await Education.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             }
            }
            else if(title==='ethics'){
-            const finddata = await Ethics.findOne({ _id: objectId });
+            const finddata = await Ethics.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             } 
            }
            else if(title==='trade'){
-            const finddata = await Trade.findOne({ _id: objectId });
+            const finddata = await Trade.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             } 
            }
            else if(title==='food'){
-            const finddata = await Food.findOne({ _id: objectId });
+            const finddata = await Food.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             } 
            }
            else if(title==='solutions'){
-            const finddata = await Solutions.findOne({ _id: objectId });
+            const finddata = await Solutions.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             } 
            }
            else if(title==='department'){
-            const finddata = await Department.findOne({ _id: objectId });
+            const finddata = await Department.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             } 
            }
            else if(title==='love'){
-            const finddata = await Love.findOne({ _id: objectId });
+            const finddata = await Love.findOne({ _id: objectId }).select('_id');
             if(!finddata){
                 return res.json({success});
             }

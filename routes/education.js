@@ -37,24 +37,26 @@ router.get('/geteducationdata', async (req, res) => {
     const pageSize = parseInt(req.query.limit) || 1;
 
     const skip = (pageNumber - 1) * pageSize;
-    
+
     let stop;
     try {
-        stop= await Home.countDocuments();
+        stop = await Home.countDocuments();
 
-        const finddata = await Home.find({ topic }).skip(skip)
-            .limit(pageSize)
-                success = true;
-                res.json({ finddata, success,skip,stop })
+        const finddata = await Home.find({ topic })
+            .sort({ _id: -1 }) // Sort by _id field in reverse order (most recent to oldest)
+            .skip(skip)
+            .limit(pageSize);
+        success = true;
+        res.json({ finddata, success, skip, stop })
 
 
-            } catch (error) {
-                res.json({ error, success })
-            }
-    })
+    } catch (error) {
+        res.json({ error, success })
+    }
+})
 ////////////////////////////////////get single content data//////////////////////
-router.get('/singleeducation/:id',async (req,res)=>{
-    const id=req.params.id;
+router.get('/singleeducation/:id', async (req, res) => {
+    const id = req.params.id;
     let success = false;
     try {
         const finddata = await Home.findById(id);
@@ -62,7 +64,7 @@ router.get('/singleeducation/:id',async (req,res)=>{
         success = true;
         if (!finddata) {
             return res.status(404).send('Content not found');
-          }
+        }
         res.json({ finddata, success })
 
     } catch (error) {

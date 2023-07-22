@@ -42,7 +42,9 @@ router.get('/getlovedata', async (req, res) => {
     try {
         stop= await Home.countDocuments();
 
-        const finddata = await Home.find({ topic }).skip(skip)
+        const finddata = await Home.find({ topic })
+            .sort({ _id: -1 }) // Sort by _id field in reverse order (most recent to oldest)
+            .skip(skip)
             .limit(pageSize)
                 success = true;
                 res.json({ finddata, success,skip,stop })

@@ -3,6 +3,7 @@ const connectToMongo=require('./db');
 const bodyParser = require('body-parser');
 const cors=require('cors')
 connectToMongo();   
+const timeout = require('connect-timeout');
 const express = require('express')
 const app = express()
 const port =process.env.port||5500;
@@ -11,6 +12,7 @@ app.get('/',(req,res)=>{
   res.send('<h1>Website is working</h1>')
 })
 app.use(express.json())
+app.use(timeout('10s'));
 app.use(cors());
 //  available routes
 app.use('/api/admin',require('./routes/admin'));
@@ -26,4 +28,4 @@ const server=app.listen(port, () => {
     console.log(`haltak app listening on port ${port}`)
     
   })
-server.timeout = 60000;
+server.timeout = 100000;

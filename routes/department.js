@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const Home = require('../models/Department')
-
+const {img}=require('../middleware/cloudinary')
 ///////////////////////////create education page document//////////////////////
 router.post('/departmentdata', async (req, res) => {
+    let success = false;
+    try {
     const topic = req.body.topic;
-    const picture = req.body.picture;
     // const link=req.body.link;
     const title = req.body.title;
     const content = req.body.content;
-    let success = false;
+    const picture =  await img(req.body.picture);
+    console.log(picture);
 
-    try {
 
         const educationdata = await Home.create({
             title: title,

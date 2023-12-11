@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Home = require('../models/Education')
+const {img}=require('../middleware/cloudinary')
 
 ///////////////////////////create education page document//////////////////////
 router.post('/educationdata', async (req, res) => {
     const topic = req.body.topic;
-    const picture = req.body.picture;
+    const picture =  await img(req.body.picture);
     // const link=req.body.link;
     const title = req.body.title;
     const content = req.body.content;

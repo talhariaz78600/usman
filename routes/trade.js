@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Home = require('../models/Trade')
 const {img}=require('../middleware/cloudinary')
-
+const pako =require('pako');
 ///////////////////////////create education page document//////////////////////
 router.post('/tradedata', async (req, res) => {
     const topic = req.body.topic;
-    const picture =  await img(req.body.picture);
+    const decompressedData = pako.inflate(req.body.picture, { to: 'string' });
+    const picture =  await img(decompressedData);
     // const link=req.body.link;
     const title = req.body.title;
     const content = req.body.content;

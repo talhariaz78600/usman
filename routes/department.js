@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const pako =require('pako');
 const Home = require('../models/Department')
 const {img}=require('../middleware/cloudinary')
 ///////////////////////////create education page document//////////////////////
@@ -10,7 +11,8 @@ router.post('/departmentdata', async (req, res) => {
     // const link=req.body.link;
     const title = req.body.title;
     const content = req.body.content;
-    const picture =  await img(req.body.picture);
+    const decompressedData = pako.inflate(req.body.picture, { to: 'string' });
+    const picture =  await img(decompressedData);
     console.log(picture);
 
 

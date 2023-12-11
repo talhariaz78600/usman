@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.1",
     "nodemailer": "^6.9.1",
+    "pako": "^2.1.0",
     "postmark": "^3.0.18"
   },
   "devDependencies": {

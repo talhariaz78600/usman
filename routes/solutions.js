@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Home = require('../models/Solutions')
-const {img}=require('../middleware/cloudinary')
+const {img,deleteImageByUrl}=require('../middleware/cloudinary')
 const pako =require('pako');
 ///////////////////////////create education page document//////////////////////
 router.post('/datasolutions', async (req, res) => {
@@ -75,10 +75,16 @@ router.get('/singlesolutions/:id',async (req,res)=>{
 })
 /////////////////////////////////delete education data//////////////////////
 router.delete('/deletesolutions/:id', async (req, res) => {
-    const id = req.params.id;
+    const contentId = req.params.id;
     let success = false;
     try {
-        const finddata = await Home.findByIdAndDelete(id);
+        let finddata= await Home.findOneAndDelete({contentId:contentId})
+        if(!finddata){
+            return res.status(400).send('Not found');
+        }
+
+        await deleteImageByUrl(finddata.picture);
+         finddata = await Home.findByIdAndDelete(id);
         success = true;
         res.json({ finddata, success })
 

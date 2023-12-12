@@ -23,4 +23,21 @@ const img = async (path) => {
   return null;
 };
 
-module.exports = { img };
+const deleteImageByUrl = async (url) => {
+  try {
+    // Extract public_id from the URL
+    const public_id = url.split('/').slice(-3).join('/').replace(/\..+$/, '');
+
+    // Delete the image from Cloudinary
+    const result = await cloudinary.uploader.destroy(public_id);
+
+    // Check the result and return a boolean indicating success or failure
+    return result.result === 'ok';
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+
+module.exports = { img,deleteImageByUrl};

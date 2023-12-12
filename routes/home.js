@@ -171,12 +171,12 @@ router.get('/gethometrade', async (req,res)=>{
 
 
 router.delete('/deletehomedata/:id', async (req, res) => {
-    const id = req.params.id;
+    const contentId= req.params.id;
     let success = false;
     try {
-        const finddata = await Home.findByIdAndDelete(id);
+        const finddata = await Home.findOneAndDelete({contentId});
         if(!finddata){
-            return res.json({success,message:"Item not found"});
+            return res.json({success,"message":"Item not found"});
         }
         success = true;
         res.json({ finddata, success })

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Home = require('../models/Food')
-const {img}=require('../middleware/cloudinary')
+const {img,deleteImageByUrl}=require('../middleware/cloudinary')
 const pako =require('pako');
 ///////////////////////////create food page document//////////////////////
 router.post('/fooddata', async (req, res) => {
@@ -79,7 +79,13 @@ router.delete('/deletefood/:id', async (req, res) => {
     const id = req.params.id;
     let success = false;
     try {
-        const finddata = await Home.findByIdAndDelete(id);
+        let finddata= await Home.findById(id);
+        if(!finddata){
+            return res.status(400).send('Not found');
+        }
+
+        await deleteImageByUrl(finddata.picture);
+         finddata = await Home.findByIdAndDelete(id);
         success = true;
         res.json({ finddata, success })
 

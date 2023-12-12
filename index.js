@@ -12,7 +12,7 @@ app.get('/',(req,res)=>{
   res.send('<h1>Website is working</h1>')
 })
 app.use(express.json())
-app.use(timeout('10s'));
+app.use(timeout('12s'));
 app.use(cors());
 //  available routes
 app.use('/api/admin',require('./routes/admin'));

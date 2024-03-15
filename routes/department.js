@@ -3,7 +3,7 @@ const router = express.Router();
 const pako =require('pako');
 const Home = require('../models/Department')
 const {img,deleteImageByUrl}=require('../middleware/cloudinary')
-///////////////////////////create education page document//////////////////////
+///////////////////////////create department page document//////////////////////
 router.post('/departmentdata', async (req, res) => {
     let success = false;
     try {
@@ -50,7 +50,7 @@ router.get('/getdepartmentdata', async (req, res) => {
             .skip(skip)
             .limit(pageSize)
                 success = true;
-                res.json({ finddata, success,skip,stop })
+                res.json({ finddata, success, skip, stop })
 
 
             } catch (error) {

@@ -10,6 +10,9 @@ const FoodSchema= new Schema({
     topic:{
         type:String,
     },
+    home:{
+        type:Boolean
+    },
     picture:{
         type:String,
     },

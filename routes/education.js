@@ -11,6 +11,7 @@ router.post('/educationdata', async (req, res) => {
     // const link=req.body.link;
     const title = req.body.title;
     const content = req.body.content;
+    const home =req.body.home;
     let success = false;
 
     try {
@@ -20,6 +21,7 @@ router.post('/educationdata', async (req, res) => {
             content: content,
             topic: topic,
             picture: picture,
+            home
             // link:link
 
         })

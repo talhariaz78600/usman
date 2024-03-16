@@ -10,6 +10,7 @@ router.post('/departmentdata', async (req, res) => {
     const topic = req.body.topic;
     // const link=req.body.link;
     const title = req.body.title;
+    const home =req.body.home;
     const content = req.body.content;
     const decompressedData = pako.inflate(req.body.picture, { to: 'string' });
     const picture =  await img(decompressedData);
@@ -21,7 +22,7 @@ router.post('/departmentdata', async (req, res) => {
             content: content,
             topic: topic,
             picture: picture,
-            // link:link
+            home
 
         })
         success = true;

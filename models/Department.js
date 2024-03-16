@@ -13,7 +13,9 @@ const DepartmentSchema= new Schema({
     picture:{
         type:String,
     },
-
+    home:{
+        type:Boolean
+    },
     date:{
         type: Date,
         default: Date.now

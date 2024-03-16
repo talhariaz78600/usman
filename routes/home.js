@@ -15,6 +15,7 @@ router.post('/homedata', async (req,res)=>{
     const contentId=req.body.contentId;
     const page=req.body.page;
     const id=contentId;
+    
     const success=false;
     let objectId;
   
@@ -68,10 +69,6 @@ router.post('/homedata', async (req,res)=>{
              
            }
          
-
-
-
-
         const homedata = await Home.create({
             title:title,
             contentId:contentId,

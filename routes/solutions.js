@@ -10,6 +10,7 @@ router.post('/datasolutions', async (req, res) => {
     const picture =  await img(decompressedData);
     // const link=req.body.link;
     const title = req.body.title;
+    const home =req.body.home;
     const content = req.body.content;
     let success = false;
 
@@ -20,6 +21,7 @@ router.post('/datasolutions', async (req, res) => {
             content: content,
             topic: topic,
             picture: picture,
+            home
             // link:link
 
         })

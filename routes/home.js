@@ -208,4 +208,34 @@ router.put('/updatehomedata/:id', async (req, res) => {
     }
 
 })
+
+router.get('/dataforhome',async (req,res)=>{
+    try {
+        const data=[];
+        let finddata = await Education.find({ home: true });
+        let setup={datatype:"تعلیم و تربیت",finddata}
+        data.push(setup);
+        finddata = await Department.find({ home: true });
+        setup={datatype:"معلومات پاکستانی شعبہ جات",finddata}
+        data.push(setup);
+        finddata = await Food.find({ home: true });
+        setup={datatype:"خوراک",finddata}
+        data.push(setup);
+        finddata = await Ethics.find({ home: true });
+        setup={datatype:"اخلاقیات",finddata}
+        data.push(setup);
+        finddata = await Love.find({ home: true });
+        setup={datatype:"پیغام محبت سیریز",finddata}
+        data.push(setup);
+        finddata = await Solutions.find({ home: true });
+        setup={datatype:"مسائل کا حل",finddata}
+        data.push(setup);
+        finddata = await Trade.find({ home: true });
+        setup={datatype:"تجارت",finddata}
+        data.push(setup);
+        res.status(200).json({message:"data fetch successfully",data})
+    } catch (error) {
+        
+    }
+})
 module.exports=router;
